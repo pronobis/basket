@@ -173,7 +173,6 @@ private:
     int    m_savedZoneToInsert;
     QPoint m_savedPosToInsert;
     bool   m_isInsertPopupMenu;
-    QAction *m_insertMenuTitle;
 public:
     void saveInsertionData();
     void restoreInsertionData();
@@ -379,6 +378,8 @@ private slots:
     void unlockHovering();
     void disableNextClick();
     void contentsMoved();
+private:
+    void removeTitleActions(KMenu *menu);
 public:
     Note  *m_tagPopupNote;
 private:

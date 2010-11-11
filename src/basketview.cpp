@@ -1126,7 +1126,6 @@ BasketView::BasketView(QWidget *parent, const QString &folderName)
         , m_zoneToInsert(0)
         , m_posToInsert(-1 , -1)
         , m_isInsertPopupMenu(false)
-        , m_insertMenuTitle(0)
         , m_loaded(false)
         , m_loadingLaunched(false)
         , m_locked(false)
@@ -1247,6 +1246,15 @@ void BasketView::setFocusIfNotInPopupMenu()
             m_editor->widget()->setFocus();
         else
             setFocus();
+    }
+}
+
+void BasketView::removeTitleActions(KMenu *menu)
+{
+    QList<QAction*> actions = menu->actions();
+    for(int i=0; i<actions.size(); ++i) {
+        if (actions.at(i)->objectName() == "kmenu_title")
+            menu->removeAction(actions.at(i));
     }
 }
 
@@ -1382,16 +1390,15 @@ void BasketView::contentsMousePressEvent(QMouseEvent *event)
         KMenu* menu = Global::bnpView->popupMenu("insert_popup");
         // If we already added a title, remove it because it would be kept and
         // then added several times.
-        if (m_insertMenuTitle && menu->actions().contains(m_insertMenuTitle))
-            menu->removeAction(m_insertMenuTitle);
+        removeTitleActions(menu);
 
         QAction *first = menu->actions().value(0);
 
         // i18n: Verbs (for the "insert" menu)
         if (zone == Note::TopGroup || zone == Note::BottomGroup)
-            m_insertMenuTitle = menu->addTitle(i18n("Group"), first);
+            menu->addTitle(i18n("Group"), first);
         else
-            m_insertMenuTitle = menu->addTitle(i18n("Insert"), first);
+            menu->addTitle(i18n("Insert"), first);
 
         setInsertPopupMenu();
         connect(menu, SIGNAL(aboutToHide()),  this, SLOT(delayedCancelInsertPopupMenu()));
@@ -1489,6 +1496,12 @@ void BasketView::contentsContextMenuEvent(QContextMenuEvent *event)
     if (event->reason() == QContextMenuEvent::Keyboard) {
         if (countFounds/*countShown*/() == 0) { // TODO: Count shown!!
             KMenu *menu = Global::bnpView->popupMenu("insert_popup");
+            // If we already added a title, remove it because it would be kept and
+            // then added several times.
+            removeTitleActions(menu);
+            QAction *first = menu->actions().value(0);
+            menu->addTitle(i18n("Insert"), first);
+            
             setInsertPopupMenu();
             connect(menu, SIGNAL(aboutToHide()),  this, SLOT(delayedCancelInsertPopupMenu()));
             connect(menu, SIGNAL(aboutToHide()),  this, SLOT(unlockHovering()));
