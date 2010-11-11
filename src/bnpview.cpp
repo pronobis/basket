@@ -666,39 +666,39 @@ void BNPView::setupActions()
 
     a = ac->addAction("insert_html");
     a->setText(i18n("&Text"));
-    a->setIcon(KIcon("text-html"));
+    a->setIcon(KIcon("insert-text"));
     a->setShortcut(KShortcut("Insert"));
     m_actInsertHtml = a;
 
     a = ac->addAction("insert_link");
     a->setText(i18n("&Link"));
-    a->setIcon(KIcon("link"));
+    a->setIcon(KIcon("insert-link"));
     a->setShortcut(KShortcut("Ctrl+Y"));
     m_actInsertLink = a;
 
     a = ac->addAction("insert_image");
     a->setText(i18n("&Image"));
-    a->setIcon(KIcon("image-png"));
+    a->setIcon(KIcon("insert-image"));
     m_actInsertImage = a;
 
     a = ac->addAction("insert_color");
     a->setText(i18n("&Color"));
-    a->setIcon(KIcon("colorset"));
+    a->setIcon(KIcon("fill-color"));
     m_actInsertColor = a;
 
     a = ac->addAction("insert_launcher");
     a->setText(i18n("L&auncher"));
-    a->setIcon(KIcon("launch"));
+    a->setIcon(KIcon("application-x-executable"));
     m_actInsertLauncher = a;
 
     a = ac->addAction("insert_kmenu");
     a->setText(i18n("Import Launcher from &KDE Menu..."));
-    a->setIcon(KIcon("kmenu"));
+    a->setIcon(KIcon("kde"));
     m_actImportKMenu = a;
 
     a = ac->addAction("insert_icon");
     a->setText(i18n("Im&port Icon..."));
-    a->setIcon(KIcon("icons"));
+    a->setIcon(KIcon("preferences-desktop-icons"));
     m_actImportIcon = a;
 
     a = ac->addAction("insert_from_file");
