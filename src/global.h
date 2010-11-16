@@ -63,6 +63,7 @@ public:
 
     // Various Things:
     static QString openNoteIcon();      /// << @return the icon used for the "Open" action on notes.
+    static QString editNoteIcon();      /// << @return the icon used for editing action on notes.
     static KMainWindow* mainWindow();
     static KConfig* config();
     static KAboutData* about() {

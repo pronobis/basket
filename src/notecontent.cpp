@@ -1375,7 +1375,7 @@ void FileContent::toolTipInfos(QStringList *keys, QStringList *values)
 
 int FileContent::zoneAt(const QPoint &pos)
 {
-    return (m_linkDisplay.iconButtonAt(pos) ? 0 : Note::Custom0);
+    return (m_linkDisplay.iconButtonAt(pos) ? Note::Custom0 : 0);
 }
 
 QRect FileContent::zoneRect(int zone, const QPoint &/*pos*/)
@@ -1577,7 +1577,7 @@ void LinkContent::toolTipInfos(QStringList *keys, QStringList *values)
 
 int LinkContent::zoneAt(const QPoint &pos)
 {
-    return (m_linkDisplay.iconButtonAt(pos) ? 0 : Note::Custom0);
+    return (m_linkDisplay.iconButtonAt(pos) ? Note::Custom0 : 0);
 }
 
 QRect LinkContent::zoneRect(int zone, const QPoint &/*pos*/)
@@ -1851,7 +1851,7 @@ void LauncherContent::toolTipInfos(QStringList *keys, QStringList *values)
 
 int LauncherContent::zoneAt(const QPoint &pos)
 {
-    return (m_linkDisplay.iconButtonAt(pos) ? 0 : Note::Custom0);
+    return (m_linkDisplay.iconButtonAt(pos) ? Note::Custom0 : 0);
 }
 
 QRect LauncherContent::zoneRect(int zone, const QPoint &/*pos*/)
