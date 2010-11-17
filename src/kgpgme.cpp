@@ -433,7 +433,7 @@ gpgme_error_t KGpgMe::passphrase(const char* uid_hint,
         result = KPasswordDialog::Accepted;
 
     if (result == KPasswordDialog::Accepted) {
-        write(fd, m_cache.data(), m_cache.length());
+        write(fd, m_cache.toUtf8().data(), m_cache.length());
         res = 0;
     }
     write(fd, "\n", 1);
